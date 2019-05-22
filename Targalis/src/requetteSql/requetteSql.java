@@ -91,10 +91,12 @@ public class requetteSql {
 		System.out.println(requete);
 		return requete;
 	}
+	
 	public static String findIdBook() {// trouve l'id de l'auteur
 		String requete = "SELECT MAX(ID_LIVRE) FROM livre;";
 		return requete;
 	}
+	
 	public static String addTransactionCreateBook(Login logActuel,Livre livre) {// crée un nouveau livre
 
 		String requete = "INSERT INTO `transaction` (`LABELLE_MOTIF`, `ID_UTI`, `ID_LIVRE`, `DATE_ACTION`)"
@@ -102,6 +104,7 @@ public class requetteSql {
 		
 		return requete;
 	}
+	
 	public static String allBook(Trie trie) {// tout les livre
 		String requete = "SELECT * FROM livre INNER JOIN auteur ON livre.ID_AUTEUR = auteur.ID_AUTEUR ";
 		if (trie.getAuteur()!=""&&trie.getCategorie()!=""&&trie.getGenre()!="") {//OK
@@ -157,4 +160,8 @@ public class requetteSql {
 		return requete;
 	}
 
+	public static String listeEtat() {// génére la liste des role
+		String requete = "SELECT * FROM etat;";
+		return requete;
+	}
 }

@@ -19,6 +19,7 @@ import classe.Login;
 import classe.Trie;
 import classe.Utilisateur;
 import conectionBDD.BddCreateBookAndAuthor;
+import conectionBDD.BddEtat;
 import conectionBDD.BddLoginAndCreateUser;
 import conectionBDD.BddRecherche;
 import design.Rendu;
@@ -180,6 +181,7 @@ public class MainPanel {
 			Choice choice = new Choice();
 			choice.setBounds(708, 446, 139, 20);
 			panel.add(choice);
+			BddEtat.connect(logActuel,choice,"listeEtat");
 			choice.revalidate();
 			
 			JButton btnModifEtat = new JButton("Modif Etat");

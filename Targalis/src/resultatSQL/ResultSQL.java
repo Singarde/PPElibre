@@ -63,30 +63,35 @@ public class ResultSQL {
 		}
 
 		}
+	
 	public static void createListGenre(Choice Choix,ResultSet result) throws SQLException {
 		while(result.next()) {
 			Choix.add(result.getString("LABELLE_GENRE"));	
 		}
 
 		}
+	
 	public static void createListCategorie(Choice Choix,ResultSet result) throws SQLException {
 		while(result.next()) {
 			Choix.add(result.getString("LABELLE_CAT"));	
 		}
 	}
-		public static void createListAuteur(Choice Choix,ResultSet result) throws SQLException {
+		
+	public static void createListAuteur(Choice Choix,ResultSet result) throws SQLException {
 			while(result.next()) {
 				Choix.add(result.getString("NOM"));	
 			}
 
 		}
-		public static void findIdAuthor(Livre livre,ResultSet result) throws SQLException {
+		
+	public static void findIdAuthor(Livre livre,ResultSet result) throws SQLException {
 			while(result.next()) {
 				livre.getAuteur().setId(Integer.parseInt(result.getString("ID_AUTEUR")));	
 			}
 
 		}
-		public static void numExemplaire(Livre livre,ResultSet result) throws SQLException {
+		
+	public static void numExemplaire(Livre livre,ResultSet result) throws SQLException {
 			if(result.next()) {
 				if (result.getString(1) != null) {
 					livre.setExemplaire(Integer.parseInt(result.getString(1))+1);
@@ -95,12 +100,14 @@ public class ResultSQL {
 				}				
 			}
 		}
-		public static void findIdBook(Livre livre,ResultSet result) throws SQLException {
+		
+	public static void findIdBook(Livre livre,ResultSet result) throws SQLException {
 			while(result.next()) {
 				livre.setId(Integer.parseInt(result.getString(1)));	
 			}
 		}
-		public static void createListAllBook(JList listAllBook,ResultSet result) throws SQLException {
+		
+	public static void createListAllBook(JList listAllBook,ResultSet result) throws SQLException {
 			while(result.next()) {
 				Auteur auteur = new Auteur(result.getString("auteur.NOM"),
 						Integer.parseInt(result.getString("auteur.ANNEENAISSANCE")),
@@ -115,6 +122,11 @@ public class ResultSQL {
 			}
 		}
 
-	
+	public static void createListEtat(Choice cEtat,ResultSet result) throws SQLException {
+		while(result.next()) {
+			cEtat.add(result.getString("libelle"));
+		}
+
+		}
 
 }
