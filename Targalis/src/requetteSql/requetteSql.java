@@ -164,4 +164,9 @@ public class requetteSql {
 		String requete = "SELECT * FROM etat;";
 		return requete;
 	}
+	
+	public static String modifEtatBook(Login logActuel, Choice choix,int idLivre) {// trouve l'id de l'auteur
+		String requete = "UPDATE `livre` SET `ETAT` = '"+choix.getSelectedItem()+"' WHERE `livre`.`ID_LIVRE` ="+idLivre+";";
+		return requete;
+	}
 }

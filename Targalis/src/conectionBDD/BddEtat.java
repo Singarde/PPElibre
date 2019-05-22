@@ -29,7 +29,7 @@ public class BddEtat {
 		}
 	}
 
-	public static void connect(Login logActuel, Choice choix, String code) {
+	public static void connect(Login logActuel, Choice choix,int idLivre,String code) {
 
 		try {
 			initialise();
@@ -57,16 +57,16 @@ public class BddEtat {
 				result = state.executeQuery(query);
 				break;	
 			
-//			case "transactionCreateBook" :
-//				Statement st = null;
-//				st = conn.createStatement();
-//
-//				int statut = st.executeUpdate( requetteSql.creatAuthor(auteur));
-//				if (statut==1) {
-//					JOptionPane.showMessageDialog(null, "nouvel auteur crée !", "validation",
-//						JOptionPane.INFORMATION_MESSAGE);
-//				}
-//				break;
+			case "ModifEtatLivre" :
+				Statement st = null;
+				st = conn.createStatement();
+
+				int statut = st.executeUpdate( requetteSql.modifEtatBook(logActuel, choix,idLivre));
+				if (statut==1) {
+					JOptionPane.showMessageDialog(null, "Etat du livre modifié", "validation",
+						JOptionPane.INFORMATION_MESSAGE);
+				}
+				break;
 //				
 //			case "addTransactionCreateBook":
 //				Statement st3 = null;
@@ -121,7 +121,7 @@ public class BddEtat {
 //				Statement st = null;
 //				st = conn.createStatement();
 //
-//				int statut = st.executeUpdate( requetteSql.createBook(livre));
+//				int statut = st.executeUpdate( requetteSql.modifEtatBook(Login logActuel, Choice choix,Livre livre));
 //				if (statut==1) {
 //					JOptionPane.showMessageDialog(null, "nouveau livre crée !", "validation",
 //						JOptionPane.INFORMATION_MESSAGE);

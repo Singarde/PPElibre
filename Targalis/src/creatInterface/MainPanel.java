@@ -169,33 +169,7 @@ public class MainPanel {
 		
 		System.out.println(logActuel.getRole());
 		
-		switch (logActuel.getRole()) {
-
-		case "administrateur":
-			
-			break;
-		case "abonné":
-			
-			break;
-		case "bibliothécaire":
-			Choice choice = new Choice();
-			choice.setBounds(708, 446, 139, 20);
-			panel.add(choice);
-			BddEtat.connect(logActuel,choice,"listeEtat");
-			choice.revalidate();
-			
-			JButton btnModifEtat = new JButton("Modif Etat");
-			btnModifEtat.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-				}
-			});
-			btnModifEtat.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-			btnModifEtat.setBounds(503, 436, 150, 30);
-			btnModifEtat.revalidate();
-			panel.add(btnModifEtat);
-			break;
-
-		}
+	
 	
 		
 
@@ -323,6 +297,36 @@ public class MainPanel {
 		});
 		btRech.setBounds(615, 120, 212, 30);
 		panel.add(btRech);
+		
+		switch (logActuel.getRole()) {
+
+		case "administrateur":
+			
+			break;
+		case "abonné":
+			
+			break;
+		case "bibliothécaire":
+			Choice choice = new Choice();
+			choice.setBounds(708, 446, 139, 20);
+			panel.add(choice);
+			BddEtat.connect(logActuel,choice,0,"listeEtat");
+			choice.revalidate();
+			
+			JButton btnModifEtat = new JButton("Modif Etat");
+			btnModifEtat.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					
+					BddEtat.connect(logActuel,choice,((Livre) listAllBook.getSelectedValue()).getId(),"ModifEtatLivre");
+				}
+			});
+			btnModifEtat.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+			btnModifEtat.setBounds(503, 436, 150, 30);
+			btnModifEtat.revalidate();
+			panel.add(btnModifEtat);
+			break;
+
+		}
 		
 		JLabel lblCatgorie = new JLabel("cat\u00E9gorie :");
 		lblCatgorie.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
