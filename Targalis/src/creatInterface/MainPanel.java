@@ -24,6 +24,7 @@ import conectionBDD.BddLoginAndCreateUser;
 import conectionBDD.BddRecherche;
 import design.Rendu;
 import fonction.CreateUser;
+import fonction.EmprunterRendre;
 import fonction.CreateAuthor;
 import fonction.CreateBook;
 
@@ -127,14 +128,36 @@ public class MainPanel {
 			panCreateUtilisateur(tabbedPane);
 			break;
 		case "abonné":
-			panRecherche(logActuel, tabbedPane);
+			
 			break;
 		case "bibliothécaire":
 			panCreateBookAndAuthor(logActuel, tabbedPane);
 			panRecherche(logActuel, tabbedPane);
 			break;
-
+			
 		}
+		
+		panRecherche(logActuel, tabbedPane);
+		
+		JPanel panel = new JPanel();
+		panel.setToolTipText("");
+		tabbedPane.addTab("emprunt en cour", null, panel, null);
+		panel.setLayout(null);
+		
+		JTextPane tpLivreEmprunter = new JTextPane();
+		tpLivreEmprunter.setBounds(10, 11, 324, 263);
+		panel.add(tpLivreEmprunter);
+		
+		EmprunterRendre.LivreEmprunter(logActuel, tpLivreEmprunter);
+		
+		JButton btnRefresh = new JButton("refresh");
+		btnRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnRefresh.setBounds(422, 51, 89, 23);
+		panel.add(btnRefresh);
 		
 		
 	}
@@ -341,10 +364,7 @@ public class MainPanel {
 		JLabel lblAuteur_1 = new JLabel("auteur :");
 		lblAuteur_1.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 		lblAuteur_1.setBounds(277, 54, 109, 20);
-		panel.add(lblAuteur_1);
-		
-		
-		
+		panel.add(lblAuteur_1);		
 		
 		JLabel lblCatgorie1 = new JLabel("cat\u00E9gorie :");
 		lblCatgorie1.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -376,6 +396,17 @@ public class MainPanel {
 		JLabel lblEtat = new JLabel("Etat :");
 		lblEtat.setBounds(497, 342, 46, 14);
 		panel.add(lblEtat);
+		
+		JButton btEmprunter = new JButton("emprunter");
+		btEmprunter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Livre livre = (Livre) listAllBook.getSelectedValue();
+				EmprunterRendre.Emprunter(logActuel,livre);
+			}
+		});
+		btEmprunter.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		btEmprunter.setBounds(615, 44, 212, 30);
+		panel.add(btEmprunter);
 		
 		
 

@@ -137,10 +137,6 @@ public class requetteSql {
 		
 		}
 		
-		
-		
-		
-		
 		if (trie.getifAuteur()||trie.getifTitre()) {//trie généal
 			requete += "ORDER BY ";
 			if(trie.getifAuteur()) {
@@ -168,5 +164,24 @@ public class requetteSql {
 	public static String modifEtatBook(Login logActuel, Choice choix,int idLivre) {// trouve l'id de l'auteur
 		String requete = "UPDATE `livre` SET `ETAT` = '"+choix.getSelectedItem()+"' WHERE `livre`.`ID_LIVRE` ="+idLivre+";";
 		return requete;
+	}
+	
+	public static String emprunterLivre(Livre livre) {
+		String requete = "UPDATE livre SET emprunt=1 WHERE id_livre="+ livre.getId() + ";";
+		return requete;
+
+	}
+	
+	public static String emprunterLivreLimite(Login logActuel, Livre livre) {
+		String requete = "INSERT INTO `emprunt`(`id_uti`, `id_livre`, `date_limite`) VALUES "
+				+"("+logActuel.getId()+","+livre.getId()+",now());";
+		return requete;
+
+	}
+	
+	public static String allLivreEmprunter(Login logActuel, Livre livre) {
+		String requete = "SELECT * FROM emprunt WHERE id_uti = "+logActuel.getId()+";";//rajouter le livre
+		return requete;
+
 	}
 }
